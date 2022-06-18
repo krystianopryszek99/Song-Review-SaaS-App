@@ -1,0 +1,34 @@
+<!-- <h1>Editing Song</h1>
+
+<%= render 'form' %>
+
+<br>
+
+<%= link_to 'Show', @song, :class => 'btn btn-dark' %> |
+<%= link_to 'Back', songs_path , :class => 'btn btn-dark'%>
+-->
+
+<h2>Edit Existing Song</h2>
+<%= form_tag song_path(@song), :method => :put do %>
+  <%= label :song, :title, 'Title', :class => 'col-form-label' %>
+  <%= text_field :song, 'title', :class => 'form-control' %>
+
+  <%= label :song, :genre, 'Genre', :class => 'col-form-label'  %>
+  <%= select :song, :genre, ['Pop', 'HipHop', 'Rap', 'Dance', 'House'], {}, {:class => 'form-control col-1'} %>
+
+  <%= label :song, :artist, 'Artist', :class => 'col-form-label' %>
+  <%= text_field :song, 'artist', :class => 'form-control' %>
+
+  <%= label :song, :album, 'Album', :class => 'col-form-label' %>
+  <%= text_field :song, 'album', :class => 'form-control' %>
+
+  <%= label :song, :description, 'Description', :class => 'col-form-label' %>
+  <%= text_field :song, 'description', :class => 'form-control' %>
+  <br>
+  <%= label :song, :release_date, 'Released On', :class => 'col-form-label'  %>
+  <%= date_select :song, :release_date, {}, :class => 'form-control col-2 d-inline' %>
+  <br>
+  <br/>
+  <%= submit_tag 'Update Changes', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', songs_path, :class => 'btn btn-secondary' %>
+<% end %>

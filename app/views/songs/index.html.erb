@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<h2>All Songs</h2>
+
+<%= form_tag songs_path, method: :get, id: 'genres_form' do %>
+  Genre:
+  <% @all_genres.each do |genre| %>
+    <div class="form-check  form-check-inline">
+      <%= label_tag "genres[#{genre}]", genre, class: 'form-check-label' %>
+      <%= check_box_tag "genres[#{genre}]", "1",  @genres_to_show&.include?(genre), class: 'form-check-input' %>
+    </div>
+  <% end %>
+  <%= submit_tag 'Refresh', id: 'genres_submit', class: 'btn btn-primary' %>
+<% end %>
+
+<table class="table table-striped col-md-12" id="songs">
+  <thead class="thead-dark"> 
+    <tr>
+      <th>
+        <%= link_to('Title', songs_path({sort_by: 'title', genres: @genres_hash}), id: 'title_header', 
+          class: ('bg-warning hilite' if @sort_by == 'title'))%>
+      </th>
+      <th>Genre</th>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>
+        <%= link_to('Release date', songs_path({sort_by: 'release_date', genres: @genres_hash}), id: 'release_date_header', 
+          class: ('bg-warning hilite' if @sort_by == 'release_date'))%>
+      </th>
+      <th colspan="3">More info</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td>
+          <%= song.title %>
+        </td>
+        <td>
+          <%= song.genre %>
+        </td>
+        <td>
+          <%= song.artist %>
+        </td>
+        <td>
+          <%= song.album %>
+        </td>
+        <td>
+          <%= song.release_date %>
+        </td>
+        <td>
+          <%= link_to "More about #{song.title}", song_path(song) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Song', new_song_path, :class => 'btn btn-dark'%>

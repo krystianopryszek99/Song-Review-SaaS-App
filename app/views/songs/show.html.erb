@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Details about <em><%= @song.title %></em></h2>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @song.genre %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @song.artist %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @song.album %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @song.description %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @song.release_date.strftime("%B %d, %Y") %>
+</p>
+
+<div class="row">
+  <%= link_to 'Edit', edit_song_path(@song), :class => 'btn btn-dark col-2' %>
+  <%= link_to 'Delete', song_path(@song), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
+  <%= link_to 'Back', songs_path, :class => 'btn btn-dark col-2' %>
+  <br>
+</div>
+
+<div>
+  <br>
+  <%= link_to 'Find Songs With Same Artist', same_artist_path(@song) %>
+</div>
+

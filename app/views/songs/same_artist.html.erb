@@ -1,0 +1,44 @@
+<h2>Other Songs by <% @artist %> </h2>
+
+<table class="table table-striped col-md-12" id="songs">
+<thead>
+    <tr>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Release date</th>
+      <th>More Info</th>
+    </tr>
+</thead>
+
+<tbody>
+  <% @songs.each do |song| %>
+    <tr>
+        <td>
+          <%= song.title %>
+        </td>
+        <td>
+          <%= song.genre %>
+        </td>
+        <td>
+          <%= song.artist %>
+        </td>
+        <td>
+          <%= song.album %>
+        </td>
+        <td>
+          <%= song.release_date %>
+        </td>
+        <td>
+          <%= link_to "More about #{song.title}", song_path(song) %>
+        </td>
+      </tr>
+   <% end %>
+</tbody>
+
+</table>
+
+<div class="row">
+  <%= link_to 'Back', songs_path, :class => 'btn btn-dark col-2' %>
+</div>
